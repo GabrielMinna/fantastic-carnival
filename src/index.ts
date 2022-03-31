@@ -1,4 +1,7 @@
-import { Application, Container, Loader, Point, Sprite } from 'pixi.js'
+import { Application, Loader} from 'pixi.js'
+import { assets } from './assets';
+import { Scene } from './Scene';
+
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -32,35 +35,13 @@ app.view.style.marginTop = marginVertical + "px";
 app.view.style.marginBottom = marginVertical + "px";
 
 
-});
+});   
 window.dispatchEvent (new Event("resize"));
 
-Loader.shared.add({url:"./Hijitus_pichichus.png", name:"Hijitus_pichichus"});
-Loader.shared.add({url:"./skate.png", name:"Skate"});
+Loader.shared.add(assets);
 
 Loader.shared.onComplete.add(()=>{
-const hijitus: Sprite = Sprite.from("Hijitus_pichichus");
-const skate: Sprite = Sprite.from("Skate");
-
-skate.position.set(0,160);
-
-const hijitusWithSkate: Container = new Container();
-
-hijitusWithSkate.addChild(hijitus);
-hijitusWithSkate.addChild(skate);
-
-hijitusWithSkate.scale.set(0.5);
-hijitusWithSkate.x=200;
-hijitusWithSkate.y=300;
-
-
-console.log(skate.toGlobal(new Point()));
-console.log(skate.parent.toGlobal(skate.position));
-
-//const aux = skate.parent.toLocal(new Point(640.360));
-//skate.position.x= aux.x;
-//skate.position.y=aux.y;
-
-app.stage.addChild(hijitusWithSkate)
+const myScene= new Scene();
+app.stage.addChild(myScene);
 });
 Loader.shared.load(); 
