@@ -1,6 +1,7 @@
 import { Application, Loader} from 'pixi.js'
 import { assets } from './assets';
-import { Scene } from './Scene';
+import { Scene } from './scenes/Scene';
+import { keyboard } from './Utils/keyboard';
 
 
 const app = new Application({
@@ -11,6 +12,8 @@ const app = new Application({
 	width: 1280,
 	height: 720
 });
+
+keyboard.initialize();
 
 window.addEventListener("resize",()=>{
 
